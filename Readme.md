@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм (простой)»
 
-* Студент: [Максим](https://up.htmlacademy.ru/javascript/27/user/1893679).
-* Наставник: `Неизвестно`.
+* Студент: [Башлай Максим](https://up.htmlacademy.ru/javascript/27/user/1893679).
+* Наставник: [Артур Литовко](https://htmlacademy.ru/profile/id6927).
 
 ---
 
