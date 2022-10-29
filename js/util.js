@@ -10,4 +10,14 @@ const getRandomPositiveInteger = (a, b) => {
   return Math.floor(result);
 };
 
-export {checkStringLength, getRandomPositiveInteger};
+const ebala = 'Данное сообщение (материал) создано и (или) распространено иностранным средством массовой информации, выполняющим функции иностранного агента, и (или) российским юридическим лицом, выполняющим функции иностранного агента.';
+
+const getPhotoCardTemplate = (index) => ({
+  id: index,
+  url: `photos/${index}.jpg`,
+  description: ebala,
+  likes: getRandomPositiveInteger(15, 200),
+  comments: getRandomPositiveInteger(0, 200)
+});
+
+export {checkStringLength, getRandomPositiveInteger, getPhotoCardTemplate};
