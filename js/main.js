@@ -1,3 +1,1 @@
-import {createPhotoCards} from './data.js';
-
-createPhotoCards(25);
+import './thumbnails.js';
