@@ -1,3 +1,1 @@
-import {createRandomPhotoCards} from './mock.js';
-
-createRandomPhotoCards();
+import './thumbnails.js';
