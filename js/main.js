@@ -1,3 +1,3 @@
-import {createRandomPhotoCards} from './data.js';
+import {createRandomPhotoCards} from './mock.js';
 
-createRandomPhotoCards(25);
+createRandomPhotoCards();
