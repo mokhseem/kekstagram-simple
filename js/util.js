@@ -22,9 +22,12 @@ const shuffleArray = (array) => {
   }
 };
 
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
 export {
   checkStringLength,
   getRandomPositiveInteger,
   getPositiveIntegerArray,
-  shuffleArray
+  shuffleArray,
+  isEscapeKey
 };
