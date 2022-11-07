@@ -1,21 +1,33 @@
 import {isEscapeKey} from './util.js';
 
-const uploadForm = document.querySelector('.img-upload__overlay');
-const openUploadForm = document.querySelector('#upload-file');
-const closeUploadForm = uploadForm.querySelector('.img-upload__cancel');
+const uploadForm = document.querySelector('.img-upload__form');
+const uploadFormPopup = document.querySelector('.img-upload__overlay');
+const uploadFormButton = document.querySelector('#upload-file');
+const commentField = document.querySelector('.text__description');
 
-openUploadForm.addEventListener('click', () => {
-  uploadForm.classList.remove('hidden');
+const isTextFieldFocused = () =>
+  document.activeElement === commentField;
 
-  document.addEventListener('keydown', (evt) => {
-    if (isEscapeKey(evt)) {
-      evt.preventDefault();
-      uploadForm.classList.add('hidden');
-    }
-  });
-});
+const onPopupEscKeydown = (evt) => {
+  if (isEscapeKey(evt) && !isTextFieldFocused()) {
+    evt.preventDefault();
+    uploadForm.reset();
+  }
+};
 
-closeUploadForm.addEventListener('click', () => {
-  uploadForm.classList.add('hidden');
-});
+function openUploadForm () {
+  uploadFormPopup.classList.remove('hidden');
+  document.body.classList.add('modal-open');
 
+  document.addEventListener('keydown', onPopupEscKeydown);
+}
+
+function closeUploadForm () {
+  uploadFormPopup.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+
+  document.removeEventListener('keydown', onPopupEscKeydown);
+}
+
+uploadFormButton.addEventListener('change', openUploadForm);
+uploadForm.addEventListener('reset', closeUploadForm);
