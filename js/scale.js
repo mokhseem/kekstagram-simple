@@ -7,7 +7,7 @@ const STEP = 25;
 
 const zoomInButton = document.querySelector('.scale__control--bigger');
 const zoomOutButton = document.querySelector('.scale__control--smaller');
-const scalePercentage = document.querySelector('.scale__control--value');
+const scalePercentage = document.querySelector('input[name="scale"]');
 const imagePreview = document.querySelector('.img-upload__preview img');
 
 let currentValue = getIntegerFromString(scalePercentage.value);
@@ -30,8 +30,8 @@ zoomOutButton.addEventListener('click', () => {
   setNewScaleValue(nextValue);
 });
 
-function resetScale() {
+function resetScaleValue() {
   setNewScaleValue(DEFAULT_SCALE);
 }
 
-export {resetScale};
+export {resetScaleValue};

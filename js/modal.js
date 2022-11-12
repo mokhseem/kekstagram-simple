@@ -1,5 +1,6 @@
 import {isEscapeKey} from './util.js';
-import {resetScale} from './scale.js';
+import {resetScaleValue} from './scale.js';
+import {resetPhotoFilter} from './photofilter.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFormPopup = document.querySelector('.img-upload__overlay');
@@ -28,7 +29,10 @@ function openUploadForm() {
 
 function closeUploadForm() {
   togglePopupClass(false);
-  resetScale();
+
+  resetScaleValue();
+  resetPhotoFilter();
+
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
 
