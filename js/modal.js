@@ -1,10 +1,12 @@
 import {isEscapeKey} from './util.js';
+import {resetScaleValue} from './scale.js';
+import {resetPhotoFilter} from './photofilter.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFormPopup = document.querySelector('.img-upload__overlay');
 const uploadFormButton = document.querySelector('#upload-file');
-const commentField = document.querySelector('.text__description');
 
+const commentField = document.querySelector('.text__description');
 const isTextFieldFocused = () =>
   document.activeElement === commentField;
 
@@ -15,16 +17,21 @@ const onPopupEscKeydown = (evt) => {
   }
 };
 
-function openUploadForm () {
-  uploadFormPopup.classList.remove('hidden');
-  document.body.classList.add('modal-open');
+const togglePopupClass = (isPopupOpen) => {
+  uploadFormPopup.classList.toggle('hidden', !isPopupOpen);
+  document.body.classList.toggle('modal-open', isPopupOpen);
+};
 
+function openUploadForm() {
+  togglePopupClass(true);
   document.addEventListener('keydown', onPopupEscKeydown);
 }
 
-function closeUploadForm () {
-  uploadFormPopup.classList.add('hidden');
-  document.body.classList.remove('modal-open');
+function closeUploadForm() {
+  togglePopupClass(false);
+
+  resetScaleValue();
+  resetPhotoFilter();
 
   document.removeEventListener('keydown', onPopupEscKeydown);
 }

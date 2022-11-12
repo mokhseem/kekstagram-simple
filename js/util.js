@@ -23,11 +23,13 @@ const shuffleArray = (array) => {
 };
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
+const getIntegerFromString = (str) => parseInt(str, 10);
 
 export {
   checkStringLength,
   getRandomPositiveInteger,
   getPositiveIntegerArray,
   shuffleArray,
-  isEscapeKey
+  isEscapeKey,
+  getIntegerFromString
 };
