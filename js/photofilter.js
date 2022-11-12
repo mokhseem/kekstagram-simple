@@ -2,14 +2,12 @@ const imagePreview = document.querySelector('.img-upload__preview img');
 const photoFilters = document.querySelectorAll('input[name="effect"]');
 
 for (const photoFilter of photoFilters) {
-  photoFilter.addEventListener('change', applySelectedFilter);
-}
-
-function applySelectedFilter() {
-  resetPhotoFilter();
-  if (this.checked) {
-    imagePreview.classList.add(`effects__preview--${this.value}`);
-  }
+  photoFilter.addEventListener('change', (evt) => {
+    resetPhotoFilter();
+    if (evt.target.checked) {
+      imagePreview.classList.add(`effects__preview--${evt.target.value}`);
+    }
+  });
 }
 
 function resetPhotoFilter() {
