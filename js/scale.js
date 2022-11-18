@@ -5,15 +5,16 @@ const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 const STEP = 25;
 
-const zoomInButton = document.querySelector('.scale__control--bigger');
-const zoomOutButton = document.querySelector('.scale__control--smaller');
-const scalePercentage = document.querySelector('input[name="scale"]');
+const uploadForm = document.querySelector('.img-upload__form');
 const imagePreview = document.querySelector('.img-upload__preview img');
 
-let currentValue = getIntegerFromString(scalePercentage.value);
+const zoomInButton = document.querySelector('.scale__control--bigger');
+const zoomOutButton = document.querySelector('.scale__control--smaller');
+
+let currentValue = getIntegerFromString(uploadForm.scale.value);
 
 function setNewScaleValue(newValue) {
-  scalePercentage.value = `${newValue}%`;
+  uploadForm.scale.value = `${newValue}%`;
   imagePreview.style.transform = `scale(${newValue / 100})`;
   currentValue = newValue;
 }
