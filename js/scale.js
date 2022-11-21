@@ -6,10 +6,9 @@ const MAX_SCALE = 100;
 const STEP = 25;
 
 const uploadForm = document.querySelector('.img-upload__form');
-const imagePreview = document.querySelector('.img-upload__preview img');
-
-const zoomInButton = document.querySelector('.scale__control--bigger');
-const zoomOutButton = document.querySelector('.scale__control--smaller');
+const imagePreview = uploadForm.querySelector('.img-upload__preview img');
+const zoomInButton = uploadForm.querySelector('.scale__control--bigger');
+const zoomOutButton = uploadForm.querySelector('.scale__control--smaller');
 
 let currentValue = getIntegerFromString(uploadForm.scale.value);
 

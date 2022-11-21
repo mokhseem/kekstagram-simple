@@ -1,14 +1,16 @@
 import {isEscapeKey} from './util.js';
 import {resetScaleValue} from './scale.js';
 import {resetPhotoFilter} from './photofilter.js';
+import {sendData} from './api.js';
+import {showSuccessAlert, showErrorAlert} from './alert.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
-const uploadFormPopup = document.querySelector('.img-upload__overlay');
-const uploadFormButton = document.querySelector('#upload-file');
+const uploadFormPopup = uploadForm.querySelector('.img-upload__overlay');
+const uploadFormButton = uploadForm.querySelector('#upload-file');
+const submitButton = uploadForm.querySelector('.img-upload__submit');
 
-const commentField = document.querySelector('.text__description');
 const isTextFieldFocused = () =>
-  document.activeElement === commentField;
+  document.activeElement === uploadForm.description;
 
 const onPopupEscKeydown = (evt) => {
   if (isEscapeKey(evt) && !isTextFieldFocused()) {
@@ -38,3 +40,21 @@ function closeUploadForm() {
 
 uploadFormButton.addEventListener('change', openUploadForm);
 uploadForm.addEventListener('reset', closeUploadForm);
+
+uploadForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  submitButton.disabled = true;
+
+  sendData(
+    () => {
+      submitButton.disabled = false;
+      showSuccessAlert();
+      uploadForm.reset();
+    },
+    () => {
+      submitButton.disabled = false;
+      showErrorAlert();
+    },
+    new FormData(evt.target)
+  );
+});
