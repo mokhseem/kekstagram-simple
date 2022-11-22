@@ -12,8 +12,11 @@ const submitButton = uploadForm.querySelector('.img-upload__submit');
 const isTextFieldFocused = () =>
   document.activeElement === uploadForm.description;
 
+const isErrorAlert = () =>
+  document.body.querySelector('.error');
+
 const onPopupEscKeydown = (evt) => {
-  if (isEscapeKey(evt) && !isTextFieldFocused()) {
+  if (isEscapeKey(evt) && !isTextFieldFocused() && !isErrorAlert()) {
     evt.preventDefault();
     uploadForm.reset();
   }
