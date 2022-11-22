@@ -6,7 +6,7 @@ const photoCollage = document.querySelector('.pictures');
 const photoThumbnailTemplate = getTemplateById('picture');
 const photoCollageFragment = document.createDocumentFragment();
 
-getData(createPhotoCollage, () => showErrorAlert('Ошибка сервера'));
+getData(createPhotoCollage, () => showErrorAlert('Ошибка соединения'));
 
 function createPhotoCollage(thumbnails) {
   if (photoThumbnailTemplate) {
