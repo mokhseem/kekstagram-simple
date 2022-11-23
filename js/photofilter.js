@@ -1,17 +1,14 @@
-const imagePreview = document.querySelector('.img-upload__preview img');
-const photoFilters = document.querySelectorAll('input[name="effect"]');
+const uploadForm = document.querySelector('.img-upload__form');
+const imagePreview = uploadForm.querySelector('.img-upload__preview img');
+const photoFilters = uploadForm.querySelector('.effects__list');
 
-for (const photoFilter of photoFilters) {
-  photoFilter.addEventListener('change', (evt) => {
-    resetPhotoFilter();
-    if (evt.target.checked) {
-      imagePreview.classList.add(`effects__preview--${evt.target.value}`);
-    }
-  });
-}
-
-function resetPhotoFilter() {
+const resetPhotoFilter = () => {
   imagePreview.classList = '';
-}
+};
+
+photoFilters.addEventListener('change', () => {
+  resetPhotoFilter();
+  imagePreview.classList.add(`effects__preview--${uploadForm.effect.value}`);
+});
 
 export {resetPhotoFilter};
