@@ -27,19 +27,17 @@ const togglePopupClass = (isPopupOpen) => {
   document.body.classList.toggle('modal-open', isPopupOpen);
 };
 
-function openUploadForm() {
+const openUploadForm = () => {
   togglePopupClass(true);
   document.addEventListener('keydown', onPopupEscKeydown);
-}
+};
 
-function closeUploadForm() {
+const closeUploadForm = () => {
   togglePopupClass(false);
-
   resetScaleValue();
   resetPhotoFilter();
-
   document.removeEventListener('keydown', onPopupEscKeydown);
-}
+};
 
 uploadFormButton.addEventListener('change', openUploadForm);
 uploadForm.addEventListener('reset', closeUploadForm);

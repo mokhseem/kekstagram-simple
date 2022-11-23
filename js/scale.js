@@ -3,6 +3,7 @@ import {getIntegerFromString} from './util.js';
 const DEFAULT_SCALE = 100;
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
+const PERCENTUM = 100;
 const STEP = 25;
 
 const uploadForm = document.querySelector('.img-upload__form');
@@ -12,11 +13,11 @@ const zoomOutButton = uploadForm.querySelector('.scale__control--smaller');
 
 let currentValue = getIntegerFromString(uploadForm.scale.value);
 
-function setNewScaleValue(newValue) {
+const setNewScaleValue = (newValue) => {
   uploadForm.scale.value = `${newValue}%`;
-  imagePreview.style.transform = `scale(${newValue / 100})`;
+  imagePreview.style.transform = `scale(${newValue / PERCENTUM})`;
   currentValue = newValue;
-}
+};
 
 zoomInButton.addEventListener('click', () => {
   let nextValue = currentValue + STEP;
@@ -30,8 +31,7 @@ zoomOutButton.addEventListener('click', () => {
   setNewScaleValue(nextValue);
 });
 
-function resetScaleValue() {
+const resetScaleValue = () =>
   setNewScaleValue(DEFAULT_SCALE);
-}
 
 export {resetScaleValue};

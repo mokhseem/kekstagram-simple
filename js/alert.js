@@ -3,7 +3,7 @@ import {getTemplateById, isEscapeKey} from './util.js';
 const successTemplate = getTemplateById('success');
 const errorTemplate = getTemplateById('error');
 
-function showAlert(template, message) {
+const showAlert = (template, message) => {
   const alertPopup = template.cloneNode(true);
   const alertPopupButton = alertPopup.querySelector('button');
   const alertMessage = alertPopup.querySelector('.error__title');
@@ -19,14 +19,14 @@ function showAlert(template, message) {
     }
   };
 
-  alertPopup.addEventListener('click', closeAlertPopupOnClick);
-  document.addEventListener('keydown', onAlertEscKeydown);
-
-  function closeAlertPopupOnClick({target}) {
+  const closeAlertPopupOnClick = ({target}) => {
     if (target === alertPopup || target === alertPopupButton) {
       closeAlertPopup();
     }
-  }
+  };
+
+  alertPopup.addEventListener('click', closeAlertPopupOnClick);
+  document.addEventListener('keydown', onAlertEscKeydown);
 
   function closeAlertPopup() {
     alertPopup.remove();
@@ -37,14 +37,12 @@ function showAlert(template, message) {
 
   document.body.append(alertPopup);
   document.body.style.overflow = 'hidden';
-}
+};
 
-function showErrorAlert(message) {
+const showErrorAlert = (message) =>
   showAlert(errorTemplate, message);
-}
 
-function showSuccessAlert() {
+const showSuccessAlert = () =>
   showAlert(successTemplate);
-}
 
 export {showAlert, showErrorAlert, showSuccessAlert};

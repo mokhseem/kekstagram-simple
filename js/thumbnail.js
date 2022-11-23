@@ -6,9 +6,7 @@ const photoCollage = document.querySelector('.pictures');
 const photoThumbnailTemplate = getTemplateById('picture');
 const photoCollageFragment = document.createDocumentFragment();
 
-getData(createPhotoCollage, () => showErrorAlert('Ошибка соединения'));
-
-function createPhotoCollage(thumbnails) {
+const createPhotoCollage = (thumbnails) => {
   if (photoThumbnailTemplate) {
     for (const {url, likes, comments, description} of thumbnails) {
       const photoThumbnail = photoThumbnailTemplate.cloneNode(true);
@@ -20,4 +18,7 @@ function createPhotoCollage(thumbnails) {
     }
     photoCollage.append(photoCollageFragment);
   }
-}
+};
+
+getData(createPhotoCollage, () =>
+  showErrorAlert('Ошибка соединения'));
