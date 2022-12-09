@@ -4,9 +4,12 @@ import {resetPhotoFilter} from './photofilter.js';
 import {sendData} from './api.js';
 import {showSuccessAlert, showErrorAlert} from './alert.js';
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFormPopup = uploadForm.querySelector('.img-upload__overlay');
-const uploadFormButton = uploadForm.querySelector('#upload-file');
+const fileInput = uploadForm.querySelector('#upload-file');
+const imagePreview = uploadForm.querySelector('.img-upload__preview img');
 const submitButton = uploadForm.querySelector('.img-upload__submit');
 
 const isTextFieldFocused = () =>
@@ -39,9 +42,20 @@ const closeUploadForm = () => {
   document.removeEventListener('keydown', onPopupEscKeydown);
 };
 
-uploadFormButton.addEventListener('change', openUploadForm);
-uploadForm.addEventListener('reset', closeUploadForm);
+fileInput.addEventListener('change', () => {
+  const file = fileInput.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
+  if (matches) {
+    imagePreview.src = URL.createObjectURL(file);
+  }
+
+  openUploadForm();
+}
+);
+
+uploadForm.addEventListener('reset', closeUploadForm);
 uploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   submitButton.disabled = true;
